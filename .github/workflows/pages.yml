@@ -28,8 +28,9 @@ jobs:
           unzip -q /tmp/king-public.zip -d unpack
           cp -R unpack/public/. _site/
           if [ -d overlay ]; then cp -R overlay/. _site/; fi
-          if [ -f _site/cardinal.css ] && [ -f _site/index.html ]; then sed -i 's#</head>#<link rel="stylesheet" href="./cardinal.css?v=4"></head>#' _site/index.html; fi
-          if [ -f _site/sw.js ]; then sed -i 's/king-v1/king-v4/g; s/king-v2/king-v4/g; s/king-v3/king-v4/g' _site/sw.js; fi
+          if [ -f _site/cardinal.css ] && [ -f _site/styles.css ]; then printf '\n' >> _site/styles.css; cat _site/cardinal.css >> _site/styles.css; fi
+          if [ -f _site/cardinal.css ] && [ -f _site/style.css ]; then printf '\n' >> _site/style.css; cat _site/cardinal.css >> _site/style.css; fi
+          if [ -f _site/sw.js ]; then sed -i 's/king-v1/king-v5/g; s/king-v2/king-v5/g; s/king-v3/king-v5/g; s/king-v4/king-v5/g' _site/sw.js; fi
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Carregar artefacto Pages
