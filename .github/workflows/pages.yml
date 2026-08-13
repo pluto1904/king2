@@ -30,7 +30,8 @@ jobs:
           if [ -d overlay ]; then cp -R overlay/. _site/; fi
           if [ -f _site/cardinal.css ] && [ -f _site/styles.css ]; then printf '\n' >> _site/styles.css; cat _site/cardinal.css >> _site/styles.css; fi
           if [ -f _site/cardinal.css ] && [ -f _site/style.css ]; then printf '\n' >> _site/style.css; cat _site/cardinal.css >> _site/style.css; fi
-          if [ -f _site/sw.js ]; then sed -i 's/king-v1/king-v5/g; s/king-v2/king-v5/g; s/king-v3/king-v5/g; s/king-v4/king-v5/g' _site/sw.js; fi
+          if [ -f _site/motion-delay.js ] && [ -f _site/js/app.js ]; then cat _site/motion-delay.js _site/js/app.js > /tmp/king-app.js; mv /tmp/king-app.js _site/js/app.js; fi
+          if [ -f _site/sw.js ]; then sed -i 's/king-v1/king-v6/g; s/king-v2/king-v6/g; s/king-v3/king-v6/g; s/king-v4/king-v6/g; s/king-v5/king-v6/g' _site/sw.js; fi
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Carregar artefacto Pages
