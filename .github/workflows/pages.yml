@@ -27,6 +27,8 @@ jobs:
           base64 -d king-public.zip.b64 > /tmp/king-public.zip
           unzip -q /tmp/king-public.zip -d unpack
           cp -R unpack/public/. _site/
+          if [ -d overlay ]; then cp -R overlay/. _site/; fi
+          if [ -f _site/sw.js ]; then sed -i 's/king-v1/king-v3/g; s/king-v2/king-v3/g' _site/sw.js; fi
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Carregar artefacto Pages
